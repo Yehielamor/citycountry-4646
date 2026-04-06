@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityCountry - Fast-Paced Word Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        dark: '#0f172a',
+                        glass: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-dark text-white font-sans min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="max-w-4xl w-full text-center animate-fade-in">
+        <header class="mb-8">
+            <h1 class="text-5xl font-bold text-primary mb-2">CityCountry</h1>
+            <p class="text-lg text-gray-300">Race to name cities, countries, and more starting with a random letter!</p>
+        </header>
+        <main class="bg-glass backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-gray-700">
+            <div id="game-area" class="mb-8">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-semibold text-secondary mb-4">Current Game</h2>
+                    <div class="text-4xl font-bold text-white mb-2" id="current-letter">A</div>
+                    <div class="text-xl text-gray-300 mb-4" id="category">City</div>
+                    <input type="text" id="answer-input" placeholder="Type your answer here..." class="w-full p-3 rounded-lg bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button id="submit-btn" class="mt-4 w-full bg-primary hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-300">Submit Answer</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4">Leaderboard</h3>
+                        <ul id="leaderboard" class="space-y-2"></ul>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4">Game Controls</h3>
+                        <button id="practice-btn" class="w-full bg-secondary hover:bg-emerald-700 text-white font-bold py-3 rounded-lg mb-3 transition duration-300">Practice Mode</button>
+                        <button id="multiplayer-btn" class="w-full bg-purple-600 hover:bg-purple-800 text-white font-bold py-3 rounded-lg transition duration-300">Multiplayer Match</button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-gray-400 text-sm">
+                <p>Play solo or challenge friends in real-time. Scores update instantly!</p>
+            </div>
+        </main>
+        <footer class="mt-8 text-gray-500">
+            <p>© 2023 CityCountry. A fun word game for geography lovers.</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
